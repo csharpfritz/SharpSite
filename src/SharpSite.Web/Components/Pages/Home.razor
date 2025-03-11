@@ -1,18 +1,37 @@
 ﻿@page "/"
 @inject IPostRepository PostService
+@inject ApplicationState AppState
 
-<PageTitle>SharpSite</PageTitle>
+<PageTitle>@AppState.SiteName</PageTitle>
 
-@* NOTE: Every page should have a h1-element, can be visually hidden if it suits the design. *@
-<h1 class="visually-hidden">@Localizer[SharedResource.sharpsite_home_page]</h1>
+<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+	<div class="container position-relative px-4 px-lg-5">
+		<div class="row gx-4 gx-lg-5 justify-content-center">
+			<div class="col-md-10 col-lg-8 col-xl-7">
+				<div class="page-heading">
+					<h1>@AppState.SiteName</h1>
+					<span class="subheading">@* WE DON'T HAVE THIS...*@</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
 
 @if (Posts is not null)
 {
-	@foreach (var post in Posts)
-	{
-		<PostView item="post" />
-	}
-} 
+	<div class="container px-4 px-lg-5">
+		<div class="row gx-4 gx-lg-5 justify-content-center">
+			<div class="col-md-10 col-lg-8 col-xl-7">
+				@foreach (var post in Posts)
+				{
+					<PostView item="post" />
+				}
+				<!-- Pager-->
+				@* <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div> *@
+			</div>
+		</div>
+	</div>
+}
 
 @code {
 	private IEnumerable<Post>? Posts { get; set; }

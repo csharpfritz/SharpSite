@@ -1,9 +1,24 @@
-<div class="post">
+<div class="post-preview">
+  <a href="@item.ToUrl()">
+    <h2 class="post-title">@item.Title</h2>
+    <h3 class="post-subtitle">@item.Description</h3>
+  </a>
+  <p class="post-meta">
+@*     Posted by
+    <a href="#!">Start Bootstrap</a> *@
+    on @item.PublishedDate.LocalDateTime.ToShortDateString()
+  </p>
+</div>
+
+<!-- Divider-->
+<hr class="my-4" />
+
+@* <div class="post">
 <h2><a href="@item.ToUrl()">@item.Title</a></h2>
 <h3>@item.PublishedDate.LocalDateTime.ToShortDateString()</h3>
 
 <p>@item.Description</p>
-</div>
+</div> *@
 @code {
 	[Parameter, EditorRequired] 
 	public required Post item { get; set; }

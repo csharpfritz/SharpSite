@@ -1,23 +1,18 @@
 @inherits LayoutComponentBase
 @inject IStringLocalizer<SharedResource> Localizer
+@inject ApplicationState AppState
 
 <HeadContent>
-  <Theme />
+  <Theme /> 
   <SectionOutlet SectionName="Head"  />
 </HeadContent>
 
-<div class="page">
-  <nav class="sidebar" role="navigation" aria-label="@Localizer[SharedResource.sharpsite_navmain]">
-    <NavMenu />
-  </nav>
+ <NavMenu />
 
-  <main>
+@Body
 
-    <article class="content px-4">
-      @Body
-    </article>
-  </main>
-</div>
+<Footer />
+
 
 <div id="blazor-error-ui">
   @Localizer[SharedResource.sharpsite_unhandled_exception]

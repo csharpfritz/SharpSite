@@ -5,32 +5,32 @@
 @inject IPageRepository PageRepository
 @inject AuthenticationStateProvider AuthZ
 @inject IUserRepository UserRepository
+@inject ApplicationState AppState
 
 
-<div class="top-row ps-3 navbar navbar-dark">
-	<a href="/" aria-label="@Localizer[SharedResource.sharpsite_home]"><img src="@Logo" alt="@Localizer[SharedResource.sharpsite_logo]"/></a>
-</div>
 
-<input type="checkbox" title="@Localizer[SharedResource.sharpsite_navmenu]" class="navbar-toggler" aria-label="@Localizer[SharedResource.sharpsite_navmenu]"/>
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-	<div class="flex-column">
-		<div class="nav-item px-3">
-			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-				<span class="bi bi-house-door-fill" aria-hidden="true"></span> @Localizer[SharedResource.sharpsite_home]
-			</NavLink>
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+	<div class="container px-4 px-lg-5">
+		<a class="navbar-brand" href="/">@AppState.SiteName</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			Menu
+			<i class="fas fa-bars"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ms-auto py-4 py-lg-0">
+				<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/">@SharedResource.sharpsite_home</a></li>
+				@foreach (var p in Pages)
+				{
+					<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@($"/{p.Slug}")">@p.Title</a></li>
+				}
+			</ul>
 		</div>
+	</div>
+</nav>
 
-		@foreach (var p in Pages)
-		{
-			<div class="nav-item px-3">
-				<NavLink class="nav-link" href="@($"/{p.Slug}")" Match="NavLinkMatch.All">
-					<span class="bi bi-plus-square-fill" aria-hidden="true"></span> @p.Title
-				</NavLink>
-			</div>
-		}
+<!--  NEW UI ABOVE -->
 
-		@** insert a horizontal rule to separate the bottom two items in the menu*@
+@*
 		<hr class="dropdown-divider" />
 
 
@@ -80,6 +80,7 @@
 		<LanguagePicker />
 	</div>
 </div>
+*@
 
 @code {
 
