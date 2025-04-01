@@ -6,7 +6,7 @@
 
 @if (LocalizationOptions.Value.SupportedCultures is not null && LocalizationOptions.Value.SupportedCultures.Count > 1)
 {
-	<div class="px-3">
+
 		<select id="supported-cultures-select" @bind="SelectedCulture" class="form-select valid">
 			@foreach (var culture in LocalizationOptions.Value.SupportedCultures.OrderBy(c => c.IetfLanguageTag))
 			{
@@ -15,7 +15,7 @@
 				</option>
 			}
 		</select>
-	</div>
+
 }
 
 @code
